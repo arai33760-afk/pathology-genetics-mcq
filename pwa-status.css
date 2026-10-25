@@ -1,0 +1,1 @@
+.appNav{flex-wrap:wrap}.offlineStatus{font-size:.72rem;color:#366d75;white-space:nowrap}.offlineStatus[data-kind="pending"]{color:#7b7446}.offlineStatus[data-kind="unavailable"]{color:#9c4c34}@media(max-width:700px){.offlineStatus{font-size:.66rem}.appNav #saveStatus{margin-left:0;max-width:none}.appNav #installBtn{margin-left:auto}}

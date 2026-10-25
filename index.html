@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#112c45"><meta name="mobile-web-app-capable" content="yes">
+<title>Pathology & Genetics MCQ Tutor</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="analytics.css">
+<link rel="stylesheet" href="pwa.css">
+<link rel="stylesheet" href="pwa-status.css">
+<script defer src="question-bank.js"></script><script defer src="storage.js"></script><script defer src="app.js"></script><script defer src="pwa-ui.js"></script>
+</head>
+<body>
+<section id="launchHelp" role="alert" hidden style="max-width:680px;margin:24px auto;padding:24px;font:17px/1.6 system-ui,sans-serif;color:#112c45;background:#eef5f8;border:2px solid #277b83;border-radius:14px;overflow-wrap:anywhere">
+<h1 style="font-size:26px">Open the hosted quiz link</h1>
+<p id="launchReason"></p>
+<p><strong>index.html is a file name, not an installation link.</strong> A phone address beginning with <code>content://</code> or <code>file://</code> cannot install this PWA.</p>
+<ol><li>On your computer, extract the complete <strong>Pathology_Genetics_Android_PWA.zip</strong>.</li><li>Upload the whole extracted folder to an HTTPS static website host. Keep the scripts, images, icons and manifest together with index.html. <a href="https://app.netlify.com/drop">Netlify Drop</a> accepts this folder; its default site is accessible to anyone with the URL.</li><li>Open the resulting <strong>https://…</strong> website link in Chrome on your phone, wait for <strong>Offline ready</strong>, then use Chrome's menu → <strong>Add to Home screen → Install</strong> (or <strong>Install app</strong>).</li></ol>
+<p>No saved progress has been cleared. Use the same website address for future updates.</p>
+</section>
+<script>
+/* Inline so Android can explain the problem even when it cannot read sibling files. */
+(()=>{const local=location.protocol==='content:'||location.protocol==='file:';
+function explain(message,hideApp=true){document.getElementById('launchReason').textContent=message;document.getElementById('launchHelp').hidden=false;const app=document.getElementById('appContent');if(app)app.hidden=hideApp}
+window.addEventListener('tutor-ready',()=>setTimeout(()=>{if(!local&&document.querySelector('#chapterTiles .chapterTile')){document.getElementById('launchHelp').hidden=true;document.getElementById('appContent').hidden=false}},0));
+document.addEventListener('DOMContentLoaded',()=>{if(local){explain('You opened a downloaded file. Android may block its separate question bank, scripts and styles, leaving an empty screen. If the quiz loads below on a computer, you can still export existing progress before moving to the hosted app.',location.protocol==='content:');return}setTimeout(()=>{if(!document.querySelector('#chapterTiles .chapterTile'))explain('The quiz did not finish loading. Check that the entire extracted folder was uploaded, then reconnect and reload. This is a loading error, not an empty question bank.')},15000)});
+})();
+</script>
+<div id="appContent">
+<header class="top"><div><div class="eyebrow">OFFLINE MEDICAL MCQ TUTOR</div><h1>Pathology & Genetics</h1><p id="sourceLine"></p></div><div class="topActions"><button id="exportBackup">Export Backup</button><label class="button">Import Backup<input id="importBackup" type="file" accept="application/json,.json" hidden></label><button id="reportJson">AI Report JSON</button><button id="reportHtml">Report HTML</button><button id="reportCsv">Report CSV</button></div></header>
+<nav class="appNav" aria-label="Main navigation"><button id="homeTab" data-view="home" class="active">Chapters</button><button id="quizTab" data-view="quiz">Quiz</button><button id="progressTab" data-view="progress">Progress</button><button id="installBtn">Install / help</button><span id="offlineStatus" class="offlineStatus" role="status">Checking offline files…</span><span id="saveStatus" role="status" aria-live="polite">Loading progress…</span></nav>
+<section id="installHelp" class="panel" hidden aria-label="Installation help"><h2>Install on Android</h2><p id="installMessage" role="status"></p><p>In Chrome, tap <strong>⋮ → Add to Home screen → Install</strong>, or <strong>⋮ → Install app</strong>. Menu wording varies. If no install option appears, check the status below and make sure this is the hosted website in regular Chrome.</p><p id="installChecks"></p><p>Wait for <strong>Offline ready</strong> before going offline. Use the same website address when updating to keep access to your saved progress. Local files opened from Downloads cannot install this PWA.</p><button id="closeInstallHelp">Close help</button></section>
+<div id="storageAlert" class="storageAlert" role="alert" hidden></div>
+<div id="notice" role="status" aria-live="polite"></div>
+<section id="homeScreen" class="screen"><div class="homeIntro"><h2>Choose a chapter</h2><p>Your progress is saved automatically. Pick up a chapter or start a fresh attempt.</p></div><div id="chapterTiles" class="chapterTiles"></div></section>
+<section id="quizScreen" class="screen" hidden>
+<section class="overview" id="overview"></section>
+<div class="layout">
+<aside class="panel setup"><h2>Choose a quiz</h2><label>Mode<select id="mode"><option value="chapter">Chapter / section</option><option value="all">All questions</option></select></label><label id="chapterWrap">Chapter or section<select id="chapter"></select></label><label id="topicWrap">Topic within chapter<select id="topic"><option value="">All topics</option></select></label><label>Revision filter<select id="filter"><option value="all">All questions</option><option value="incorrect">Incorrect</option><option value="guessed">Guessed (even if correct)</option><option value="bookmarked">Bookmarked</option><option value="unanswered">Unanswered</option></select></label><div class="row"><button class="primary" id="start">Start new quiz</button></div><p class="small" id="selectionCount"></p><hr><h2>Saved quizzes</h2><label>Choose a session<select id="savedSessions"></select></label><button id="resume">Resume selected quiz</button><hr><h2>Current session</h2><div id="sessionStats" class="small">Start a quiz to see progress.</div><button id="resetQuiz" class="danger" disabled>Restart this quiz</button><p class="small">Restarting creates a fresh attempt and keeps earlier results for trend analysis.</p><hr><h2>Question navigation</h2><div class="row"><button id="navBack">‹ 50</button><span id="navPage"></span><button id="navForward">50 ›</button></div><div id="questionGrid" class="questionGrid"></div><label>Jump to question number<input id="jumpNumber" type="number" min="1" inputmode="numeric"></label><button id="jump">Jump</button><div class="legend small">● Correct &nbsp; ● Incorrect &nbsp; ◌ Unanswered &nbsp; ★ Bookmarked</div></aside>
+<main class="panel main" id="main"><div class="welcome"><h2>Your study bank is ready</h2><p>Choose a chapter or all questions, then start or resume. Answers stay hidden until you submit. Your work is saved in this browser.</p><p>The source has six answer keys that cannot be graded reliably; these questions show their printed source response after submission.</p></div></main>
+</div>
+<section class="panel analytics"><div class="row"><h2>Performance by area</h2><label>View <select id="analyticsLevel"><option value="chapter">Chapters</option><option value="topic">Topics</option><option value="subtopic">Subtopics</option></select></label></div><p class="small">Scores use the latest attempt per question. Areas with fewer than five attempts have limited evidence. Study tags beyond chapters are inferred from the source text.</p><div class="tableScroll"><table id="analyticsTable"><thead><tr><th>Area</th><th>Attempted</th><th>Correct</th><th>Incorrect</th><th>Guessed</th><th>Accuracy</th><th>Repeated mistakes</th></tr></thead><tbody></tbody></table></div></section>
+</section>
+<section id="progressScreen" class="screen" hidden><div class="homeIntro"><h2>Progress dashboard</h2><p>Unique completed questions are counted once. Repeated attempts appear separately.</p></div><div id="progressSummary" class="dashboardMetrics"></div><div class="dashboardColumns"><section class="panel"><h3>Weakest chapters and topics</h3><div id="weakAreas"></div></section><section class="panel"><h3>Across repeated attempts</h3><div id="attemptTrends"></div></section></div><section class="panel chapterResults"><h3>Chapter results</h3><div id="chapterResults"></div></section></section>
+<div id="chapterActions" class="actionOverlay" hidden><div class="actionSheet" role="dialog" aria-modal="true" aria-labelledby="actionTitle"><div class="row actionHead"><h2 id="actionTitle"></h2><button id="closeActions" aria-label="Close">✕</button></div><p id="actionProgress" class="small"></p><div class="actionButtons"><button id="continueChapter" class="primary">Continue</button><button id="newChapter">Start New Attempt</button><button id="reviewIncorrect">Review Incorrect</button><button id="reviewGuessed">Review Guessed</button></div></div></div>
+<footer>Progress saves automatically on this device. Uninstalling the app, clearing site data, or changing devices may remove local progress; backups remain available as an optional safeguard.</footer>
+</div>
+<noscript><p style="padding:24px;font:18px system-ui">Enable JavaScript in Chrome to load the questions and save progress.</p></noscript>
+</body></html>
