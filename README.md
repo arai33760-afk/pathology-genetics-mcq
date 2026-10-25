@@ -1,5 +1,11 @@
 # Pathology & Genetics MCQ Tutor — Android PWA
 
+**Live app:** https://arai33760-afk.github.io/pathology-genetics-mcq/
+
+**Dedicated repository:** https://github.com/arai33760-afk/pathology-genetics-mcq
+
+On Android, open the live app in Chrome, wait for **Offline ready**, then choose **⋮ → Add to Home screen → Install** or **Install app**. Hosting is already configured; the manual hosting instructions below are only for creating another deployment.
+
 This updates the existing 2,173-question quiz. The source question bank, stable question IDs, 29 original image files, explanations, Tutor Mode, bookmarks, and exports are retained.
 
 ## Install on Android
@@ -38,4 +44,4 @@ For updates, publish a new release to the **same HTTPS site address**. Open the 
 
 ## Verification and limits
 
-See `verification-report.md` for exact checks. Chrome on Windows passed IndexedDB migration, automatic saving, browser restart, offline navigation and all original images, unfinished-draft recovery, backup export/import, JSON/HTML/CSV reports, and copy controls. Chrome's installability diagnostics returned no errors for root and subfolder deployments using Pixel 7 emulation and persistent browser profiles. **Physical Android installation, Android device persistence, and a hosted HTTPS deployment were not tested.**
+See `verification-report.md` for exact checks. Chrome on Windows passed IndexedDB migration, automatic saving, browser restart, offline navigation and all original images, unfinished-draft recovery, backup export/import, JSON/HTML/CSV reports, and copy controls. Chrome's installability diagnostics returned no errors for root and subfolder deployments using Pixel 7 emulation and persistent browser profiles. The live GitHub Pages HTTPS site also passed installability, offline caching, original-image decoding, browser restart, saving, migration, backup compatibility, and copy-control tests. **Physical Android installation and Android device persistence were not tested.**

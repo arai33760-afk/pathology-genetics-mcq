@@ -1,5 +1,9 @@
 # Android installation — start here
 
+**Your app is already hosted:** https://arai33760-afk.github.io/pathology-genetics-mcq/
+
+Open that link in regular Chrome on Android, wait for **Offline ready**, then choose **⋮ → Add to Home screen → Install** or **Install app**. Open the installed icon and check it once in airplane mode. You can skip the website-setup section below unless you want to create another deployment.
+
 **Do not open index.html from Downloads or your phone's file manager to install it.** The screenshot supplied for troubleshooting shows `content://media/…`. That is a local Android file address, even though Chrome displays it. Android may not let that file load its separate styles, scripts or question bank. A PWA installs from a website address beginning with `https://`.
 
 ## One-time website setup on your computer
@@ -20,4 +24,4 @@ If installation still is not offered, check that the address really begins with 
 
 If your old quiz has progress under a local file or different website, export one JSON backup from the old quiz and import it once into this PWA. After that, no routine manual import/export is required. Keep the same HTTPS URL for app updates. Local progress may be lost if the app is uninstalled, site data is cleared, or the device changes.
 
-The package has been tested in Chrome on Windows with mobile emulation. Physical Android installation and a hosted HTTPS deployment have not been tested. Reference: [MDN installability requirements](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable), [Netlify Drop instructions](https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/).
+The package and live GitHub Pages HTTPS deployment have passed Chrome on Windows tests with mobile emulation. Physical Android installation has not been tested. Reference: [MDN installability requirements](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable), [Netlify Drop instructions](https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/).
